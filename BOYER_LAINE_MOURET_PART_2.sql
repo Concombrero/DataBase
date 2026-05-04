@@ -1,14 +1,6 @@
 -- Database Project - Part 2
 -- Group: BOYER Timothe, LAINE Martin, MOURET Basile
 -- Theme: Pokemon database
--- Target DBMS: SQLite 3
---
--- Note:
--- This implementation follows the relational schema from Part 1.
--- Two enforcement details are added here because they are implied by the UML
--- and integrity constraints from Part 1:
---   1. Pokemon.evolves_from is UNIQUE to preserve the 0..1 reflexive cardinality.
---   2. A trigger prevents inserting more than two types for the same Pokemon.
 
 PRAGMA foreign_keys = ON;
 
