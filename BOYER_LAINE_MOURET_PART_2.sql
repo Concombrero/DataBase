@@ -337,17 +337,16 @@ JOIN Pokemon AS p
 ORDER BY tr.name, tm.team_name, cpt.position;
 
 -- Returned rows:
--- trainer      | team_name    | position | nickname | species     | level
--- Ash Ketchum  | Kanto Core   | 1        | Leafy    | Bulbasaur   | 15
--- Ash Ketchum  | Kanto Core   | 2        | Blaze    | Charmander  | 18
--- Ash Ketchum  | Speed Squad  | 1        | Sparky   | Pikachu     | 26
--- Ash Ketchum  | Speed Squad  | 2        | Swift    | Pidgey      | 12
--- Brock        | Stone Wall   | 1        | Boulder  | Onix        | 30
--- Brock        | Stone Wall   | 2        | Pebble   | Geodude     | 22
--- Erika        | Greenhouse   | 1        | Ivy      | Ivysaur     | 27
--- Erika        | Greenhouse   | 2        | Bloom    | Oddish      | 19
--- Misty        | Tide         | 1        | Shell    | Squirtle    | 20
--- Misty        | Tide         | 2        | Wave     | Squirtle    | 17
+-- Ash Ketchum|Kanto Core|1|Leafy|Bulbasaur|15
+-- Ash Ketchum|Kanto Core|2|Blaze|Charmander|18
+-- Ash Ketchum|Speed Squad|1|Sparky|Pikachu|26
+-- Ash Ketchum|Speed Squad|2|Swift|Pidgey|12
+-- Brock|Stone Wall|1|Boulder|Onix|30
+-- Brock|Stone Wall|2|Pebble|Geodude|22
+-- Erika|Greenhouse|1|Ivy|Ivysaur|27
+-- Erika|Greenhouse|2|Bloom|Oddish|19
+-- Misty|Tide|1|Shell|Squirtle|20
+-- Misty|Tide|2|Wave|Squirtle|17
 
 -- Q2. List all moves that Charizard can learn.
 -- Objective:
@@ -370,11 +369,10 @@ WHERE p.name = 'Charizard'
 ORDER BY ty.name, m.name;
 
 -- Returned rows:
--- pokemon    | move          | move_type | category | learn_method
--- Charizard  | Ember         | Fire      | Special  | Level-up
--- Charizard  | Flamethrower  | Fire      | Special  | TM
--- Charizard  | Fly           | Flying    | Physical | HM
--- Charizard  | Wing Attack   | Flying    | Physical | Level-up
+-- Charizard|Ember|Fire|Special|Level-up
+-- Charizard|Flamethrower|Fire|Special|TM
+-- Charizard|Fly|Flying|Physical|HM
+-- Charizard|Wing Attack|Flying|Physical|Level-up
 
 -- Q3. Find species that have exactly two types.
 -- Objective:
@@ -397,14 +395,13 @@ JOIN Type AS t2
 ORDER BY p.pokedex_no;
 
 -- Returned rows:
--- pokemon     | first_type | second_type
--- Bulbasaur   | Grass      | Poison
--- Ivysaur     | Grass      | Poison
--- Charizard   | Fire       | Flying
--- Pidgey      | Normal     | Flying
--- Oddish      | Grass      | Poison
--- Geodude     | Rock       | Ground
--- Onix        | Rock       | Ground
+-- Bulbasaur|Grass|Poison
+-- Ivysaur|Grass|Poison
+-- Charizard|Fire|Flying
+-- Pidgey|Normal|Flying
+-- Oddish|Grass|Poison
+-- Geodude|Rock|Ground
+-- Onix|Rock|Ground
 
 -- Q4. Show battles where both sides declared a team.
 -- Objective:
@@ -436,11 +433,10 @@ JOIN Team AS opponent_team_declared
 ORDER BY b.battle_date;
 
 -- Returned rows:
--- battle_id | battle_date | challenger   | challenger_team | opponent     | opponent_team | winner
--- 201       | 2026-04-02  | Ash Ketchum  | Kanto Core      | Brock        | Stone Wall    | Brock
--- 202       | 2026-04-10  | Ash Ketchum  | Speed Squad     | Misty        | Tide          | Ash Ketchum
--- 203       | 2026-04-18  | Brock        | Stone Wall      | Erika        | Greenhouse    | Draw
--- 204       | 2026-04-25  | Erika        | Greenhouse      | Ash Ketchum  | Kanto Core    | Erika
+-- 201|2026-04-02|Ash Ketchum|Kanto Core|Brock|Stone Wall|Brock
+-- 202|2026-04-10|Ash Ketchum|Speed Squad|Misty|Tide|Ash Ketchum
+-- 203|2026-04-18|Brock|Stone Wall|Erika|Greenhouse|Draw
+-- 204|2026-04-25|Erika|Greenhouse|Ash Ketchum|Kanto Core|Erika
 
 -- Q5. Find captured Pokemon that are not assigned to any team.
 -- Objective:
@@ -467,8 +463,7 @@ WHERE cpt.captured_id IS NULL
 ORDER BY t.name, cp.captured_id;
 
 -- Returned rows:
--- captured_id | nickname | species | trainer      | level
--- 110         | Bud      | Oddish  | Ash Ketchum  | 13
+-- 110|Bud|Oddish|Ash Ketchum|13
 
 -- ============================================================
 -- Query set with aggregates
@@ -487,11 +482,10 @@ GROUP BY t.trainer_id, t.name
 ORDER BY captured_pokemon DESC, t.name;
 
 -- Returned rows:
--- trainer      | captured_pokemon
--- Ash Ketchum  | 5
--- Brock        | 2
--- Erika        | 2
--- Misty        | 2
+-- Ash Ketchum|5
+-- Brock|2
+-- Erika|2
+-- Misty|2
 
 -- A2. Compute the average level and size of every team.
 -- Objective:
@@ -514,12 +508,11 @@ GROUP BY t.trainer_id, tr.name, t.team_name
 ORDER BY average_level DESC, tr.name, t.team_name;
 
 -- Returned rows:
--- team_name    | trainer      | average_level | team_size
--- Stone Wall   | Brock        | 26.0          | 2
--- Greenhouse   | Erika        | 23.0          | 2
--- Speed Squad  | Ash Ketchum  | 19.0          | 2
--- Tide         | Misty        | 18.5          | 2
--- Kanto Core   | Ash Ketchum  | 16.5          | 2
+-- Stone Wall|Brock|26.0|2
+-- Greenhouse|Erika|23.0|2
+-- Speed Squad|Ash Ketchum|19.0|2
+-- Tide|Misty|18.5|2
+-- Kanto Core|Ash Ketchum|16.5|2
 
 -- A3. Count the number of victories for each trainer.
 -- Objective:
@@ -544,8 +537,7 @@ GROUP BY t.trainer_id, t.name
 ORDER BY victories DESC, total_battles DESC, t.name;
 
 -- Returned rows:
--- trainer      | total_battles | victories
--- Ash Ketchum  | 3             | 1
--- Brock        | 2             | 1
--- Erika        | 2             | 1
--- Misty        | 1             | 0
+-- Ash Ketchum|3|1
+-- Brock|2|1
+-- Erika|2|1
+-- Misty|1|0
